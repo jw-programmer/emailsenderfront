@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <p-toolbar>
   <div class="ui-toolbar-group-left">
     <h3>jw-programer e-mail sender</h3>
@@ -27,8 +28,8 @@
     <span class="p-col-12">
       <p-editor class="p-col-12" name="message" formControlName="message"
         placeholder="A mensagem. A caixa aumenta a medida que escreve"></p-editor>
-        <p class="danger" *ngIf="emailForm.controls['message'].dirty && emailForm.controls['message'].errors" margin-left>
-          Mensagem não pode ser em branco</p>
+      <p class="danger" *ngIf="emailForm.controls['message'].dirty && emailForm.controls['message'].errors" margin-left>
+        Mensagem não pode ser em branco</p>
     </span>
 
     <div class="p-grid p-col p-justify-around">
@@ -37,7 +38,7 @@
           label="Enviar email"></button>
       </div>
       <div class="p-col-4">
-        <button pButton class="ui-button-danger" label="Apagar Tudo"></button>
+        <button pButton class="ui-button-danger" label="Apagar Tudo" (click)="clearForm()"></button>
       </div>
     </div>
   </form>
