@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'mailsender';
+
+  emailForm: FormGroup
+
+  constructor(private formBuilder: FormBuilder){
+    this.emailForm = this.formBuilder.group({
+      recipient:["",[Validators.required, Validators.email]],
+      sender:["",[Validators.required]],
+      subject:["",[Validators.required]],
+      message:["",[Validators.required]]
+    })
+  }
+
+  sendEmail(){
+    console.log(this.emailForm.controls.message)
+  }
 }

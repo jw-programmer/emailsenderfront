@@ -4,27 +4,41 @@
   </div>
 </p-toolbar>
 <div class="main ui-fluid p-grid p-justify-center">
-  <span class="ui-float-label p-col-12">
-    <input type="email" pInputText name="" id="recipient" />
-    <label for="recipient">E-mail Destinário</label>
-  </span>
-  <span class="ui-float-label p-col-12">
-    <input type="text" pInputText name="" id="sender" />
-    <label for="sender">Remetente</label>
-  </span>
-  <span class="ui-float-label p-col-12">
-    <input type="text" pInputText name="subject" />
-    <label for="subject">Assunto</label>
-  </span>
+  <form [formGroup]="emailForm" (ngSubmit)="sendEmail(); $event.preventDefault()">
+    <span class="ui-float-label p-col-12 form-spacer">
+      <input type="email" pInputText formControlName="recipient" id="recipient" />
+      <label for="recipient">E-mail Destinário</label>
+      <p class="danger" *ngIf="emailForm.controls['recipient'].dirty && emailForm.controls['recipient'].errors"
+        margin-left>Valor
+        vazio ou e-mail inválido</p>
+    </span>
+    <span class="ui-float-label p-col-12 form-spacer">
+      <input type="text" pInputText formControlName="sender" id="sender" />
+      <label for="sender">Remetente</label>
+      <p class="danger" *ngIf="emailForm.controls['sender'].dirty && emailForm.controls['sender'].errors" margin-left>
+        Campo vazio</p>
+    </span>
+    <span class="ui-float-label p-col-12 form-spacer">
+      <input type="text" pInputText formControlName="subject" id="subject" />
+      <label for="subject">Assunto</label>
+      <p class="danger" *ngIf="emailForm.controls['subject'].dirty && emailForm.controls['subject'].errors" margin-left>
+        Campo vazio</p>
+    </span>
+    <span class="p-col-12">
+      <p-editor class="p-col-12" name="message" formControlName="message"
+        placeholder="A mensagem. A caixa aumenta a medida que escreve"></p-editor>
+        <p class="danger" *ngIf="emailForm.controls['message'].dirty && emailForm.controls['message'].errors" margin-left>
+          Mensagem não pode ser em branco</p>
+    </span>
 
-  <p-editor class="p-col-12" name="message" placeholder="A mensagem. A caixa aumenta a medida que escreve"></p-editor>
-
-  <div class="p-grid p-col p-justify-around">
-    <div class="p-col-4">
-      <button pButton class="ui-button-success" label="Enviar email"></button>
+    <div class="p-grid p-col p-justify-around">
+      <div class="p-col-4">
+        <button pButton class="ui-button-success" type="submit" [disabled]="emailForm.invalid"
+          label="Enviar email"></button>
+      </div>
+      <div class="p-col-4">
+        <button pButton class="ui-button-danger" label="Apagar Tudo"></button>
+      </div>
     </div>
-    <div class="p-col-4">
-      <button pButton class="ui-button-danger" label="Apagar Tudo"></button>
-    </div>
-  </div>
+  </form>
 </div>
