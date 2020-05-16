@@ -3,17 +3,28 @@
     <h3>jw-programer e-mail sender</h3>
   </div>
 </p-toolbar>
-<div class="main" p-grid>
-  <span class="ui-float-label form-input">
-    <input type="email" pInputText name="" id="recipient"/>
+<div class="main ui-fluid p-grid p-justify-center">
+  <span class="ui-float-label p-col-12">
+    <input type="email" pInputText name="" id="recipient" />
     <label for="recipient">E-mail Destinário</label>
   </span>
-  <span class="ui-float-label form-input">
-    <input type="text" pInputText name="" id="sender"/>
+  <span class="ui-float-label p-col-12">
+    <input type="text" pInputText name="" id="sender" />
     <label for="sender">Remetente</label>
   </span>
-  <span class="ui-float-label form-input">
-    <input type="text" pInputText name="subject"/>
+  <span class="ui-float-label p-col-12">
+    <input type="text" pInputText name="subject" />
     <label for="subject">Assunto</label>
   </span>
+
+  <p-editor class="p-col-12" name="message" placeholder="A mensagem. A caixa aumenta a medida que escreve"></p-editor>
+
+  <div class="p-grid p-col p-justify-around">
+    <div class="p-col-4">
+      <button pButton class="ui-button-success" label="Enviar email"></button>
+    </div>
+    <div class="p-col-4">
+      <button pButton class="ui-button-danger" label="Apagar Tudo"></button>
+    </div>
+  </div>
 </div>
