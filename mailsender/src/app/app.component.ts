@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 export class AppComponent {
 
   emailForm: FormGroup
+  sending: boolean = false
 
   constructor(private formBuilder: FormBuilder,
     private messageService: MessageService,
@@ -25,13 +26,16 @@ export class AppComponent {
   }
 
   sendEmail() {
+    this.sending = true
     this.emailService.sendEmail(this.emailForm.value)
       .subscribe(response => {
-        this.messageService.add({ severity: "success", summary: "E-mail Enviado", detail: `O e-mail para ${this.emailForm.get("recipient")} foi enviado` })
+        this.messageService.add({ severity: "success", summary: "E-mail Enviado", detail: `O e-mail para ${this.emailForm.get("recipient").value} foi enviado` })
         this.emailForm.reset()
+        this.sending = false
       },
         error => {
           this.messageService.add({ severity: "error", summary: "Envio falhou", detail: "Houve um erro no broker. Tente mais tarde" })
+          this.sending = false
         })
   }
 
