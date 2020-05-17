@@ -1,44 +1,108 @@
 <p-toast></p-toast>
+<p-blockUI [blocked]="sending"></p-blockUI>
 <p-toolbar>
   <div class="ui-toolbar-group-left">
-    <h3>jw-programer e-mail sender</h3>
+    <h1>jw-programer e-mail sender</h1>
+  </div>
+  <div class="ui-toolbar-group-right">
+    <div>
+      <p>Frontend: </p>
+      <a href="https://github.com/jw-programmer/emailsenderfront" target="_brank"> Mail Sender Front</a>
+    </div>
+    <div>
+      <p>Backend: </p>
+      <a href="https://github.com/jw-programmer/emailbroker" target="_blank">Mail Broker</a>
+    </div>
   </div>
 </p-toolbar>
 <div class="main ui-fluid p-grid p-justify-center">
-  <form [formGroup]="emailForm" (ngSubmit)="sendEmail(); $event.preventDefault()">
+  <form
+    [formGroup]="emailForm"
+    (ngSubmit)="sendEmail(); $event.preventDefault()"
+  >
     <span class="ui-float-label p-col-12 form-spacer">
-      <input type="email" pInputText formControlName="recipient" id="recipient" />
+      <input
+        type="email"
+        pInputText
+        formControlName="recipient"
+        id="recipient"
+      />
       <label for="recipient">E-mail Destinário</label>
-      <p class="danger" *ngIf="emailForm.controls['recipient'].dirty && emailForm.controls['recipient'].errors"
-        margin-left>Valor
-        vazio ou e-mail inválido</p>
+      <p
+        class="danger"
+        *ngIf="
+          emailForm.controls['recipient'].dirty &&
+          emailForm.controls['recipient'].errors
+        "
+        margin-left
+      >
+        Valor vazio ou e-mail inválido
+      </p>
     </span>
     <span class="ui-float-label p-col-12 form-spacer">
       <input type="text" pInputText formControlName="sender" id="sender" />
       <label for="sender">Remetente</label>
-      <p class="danger" *ngIf="emailForm.controls['sender'].dirty && emailForm.controls['sender'].errors" margin-left>
-        Campo vazio</p>
+      <p
+        class="danger"
+        *ngIf="
+          emailForm.controls['sender'].dirty &&
+          emailForm.controls['sender'].errors
+        "
+        margin-left
+      >
+        Campo vazio
+      </p>
     </span>
     <span class="ui-float-label p-col-12 form-spacer">
       <input type="text" pInputText formControlName="subject" id="subject" />
       <label for="subject">Assunto</label>
-      <p class="danger" *ngIf="emailForm.controls['subject'].dirty && emailForm.controls['subject'].errors" margin-left>
-        Campo vazio</p>
+      <p
+        class="danger"
+        *ngIf="
+          emailForm.controls['subject'].dirty &&
+          emailForm.controls['subject'].errors
+        "
+        margin-left
+      >
+        Campo vazio
+      </p>
     </span>
     <span class="p-col-12">
-      <p-editor class="p-col-12" name="message" formControlName="message"
-        placeholder="A mensagem. A caixa aumenta a medida que escreve"></p-editor>
-      <p class="danger" *ngIf="emailForm.controls['message'].dirty && emailForm.controls['message'].errors" margin-left>
-        Mensagem não pode ser em branco</p>
+      <p-editor
+        class="p-col-12"
+        name="message"
+        formControlName="message"
+        placeholder="A mensagem. A caixa aumenta a medida que escreve"
+      ></p-editor>
+      <p
+        class="danger"
+        *ngIf="
+          emailForm.controls['message'].dirty &&
+          emailForm.controls['message'].errors
+        "
+        margin-left
+      >
+        Mensagem não pode ser em branco
+      </p>
     </span>
 
     <div class="p-grid p-col p-justify-around">
       <div class="p-col-4">
-        <button pButton class="ui-button-success" type="submit" [disabled]="emailForm.invalid"
-          label="Enviar email"></button>
+        <button
+          pButton
+          class="ui-button-success"
+          type="submit"
+          [disabled]="emailForm.invalid || sending"
+          label="Enviar email"
+        ></button>
       </div>
       <div class="p-col-4">
-        <button pButton class="ui-button-danger" label="Apagar Tudo" (click)="clearForm()"></button>
+        <button
+          pButton
+          class="ui-button-danger"
+          label="Apagar Tudo"
+          (click)="clearForm()"
+        ></button>
       </div>
     </div>
   </form>

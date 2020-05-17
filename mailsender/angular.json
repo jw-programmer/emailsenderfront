@@ -29,7 +29,7 @@
             ],
             "styles": [
               "src/styles.sass",
-              "node_modules/quill/dist/quill.core.css", 
+              "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "mailsender"
+  "defaultProject": "mailsender",
+  "cli": {
+    "analytics": "f30a830d-2cd2-4ac7-919a-7e99f376f7f1"
+  }
 }
